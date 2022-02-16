@@ -1,21 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 //Notes//
 //remove all console.logs to increase app performance
 
 export default function App() {
-  // let x = 1;
+  let x = 1;
   console.log("App executed.")
 
   // let x;
   // x.toString();
 
   return (
-    <SafeAreaView style={styles.container}>
+    // <SafeAreaView style={styles.container}>
+      <View style={styles.container}>
       <Text>Hello world, this is me!</Text>
       {/* <StatusBar style="auto" /> */}
-    </SafeAreaView>
+      </View>
+    // </SafeAreaView>
   );
 }
 

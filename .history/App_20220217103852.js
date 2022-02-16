@@ -14,7 +14,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <Text>Hello world, this is me!</Text>
-      {/* <StatusBar style="auto" /> */}
+      <StatusBar style="auto" />
     </SafeAreaView>
   );
 }
