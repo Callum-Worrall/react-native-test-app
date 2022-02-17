@@ -13,11 +13,10 @@ import {
 export default function App() {
 
   console.log("App executed.");
-  // console.log(useDimensions()); //doesnt respond to orientation changes
-  // console.log(useDeviceOrientation()); 
+  console.log(useDimensions()); //doesnt respond to orientation changes
+  console.log(useDeviceOrientation()); 
 
-  const { height, width} = useDimensions();
-  const landscape = width > height;
+  const {landscape} = useDeviceOrientation();
 
   return (
     <SafeAreaView style={[styles.container, containerStyle]}>
@@ -30,11 +29,9 @@ export default function App() {
         }}
       >
         <View style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center', //main
-            alignItems: 'center', //secondary
-          }}
+          flex: 1,
+          flexDirection: 'row',
+          justifyContent: 'center'}}
         >
           <Button color="orange" title="Click Me" onPress={() => console.log("Clicked!")} />
         </View>
@@ -51,10 +48,10 @@ const containerStyle = { backgroundColor: "orange" }
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center', //horizontal
-    justifyContent: 'center', //vertical
     backgroundColor: '#fff', //white
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, //status bar for android as SafeAreaView only works iOS
     // paddingTop: 0,
+    alignItems: 'center', //horizontal
+    // justifyContent: 'center', //vertical
   },
 });

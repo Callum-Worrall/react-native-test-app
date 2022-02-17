@@ -10,10 +10,10 @@ import {
 //Notes//
 //remove all console.logs to increase app performance
 
-export default function App() {
+export default function DeepBreath() {
 
-  console.log("App executed.");
-  // console.log(useDimensions()); //doesnt respond to orientation changes
+  console.log("Take a deep breath.");
+  console.log(useDimensions()); //doesnt respond to orientation changes
   // console.log(useDeviceOrientation()); 
 
   const { height, width} = useDimensions();

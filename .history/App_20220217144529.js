@@ -13,7 +13,7 @@ import {
 export default function App() {
 
   console.log("App executed.");
-  // console.log(useDimensions()); //doesnt respond to orientation changes
+  console.log(useDimensions()); //doesnt respond to orientation changes
   // console.log(useDeviceOrientation()); 
 
   const { height, width} = useDimensions();

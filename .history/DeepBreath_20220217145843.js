@@ -10,38 +10,18 @@ import {
 //Notes//
 //remove all console.logs to increase app performance
 
-export default function App() {
+export default function DeepBreath() {
 
-  console.log("App executed.");
-  // console.log(useDimensions()); //doesnt respond to orientation changes
+  console.log("Take a deep breath.");
+  console.log(useDimensions()); //doesnt respond to orientation changes
   // console.log(useDeviceOrientation()); 
 
   const { height, width} = useDimensions();
   const landscape = width > height;
 
   return (
-    <SafeAreaView style={[styles.container, containerStyle]}>
+    <SafeAreaView style={}>    
       
-
-      <View style={{
-          backgroundColor: 'dodgerblue',
-          width: landscape ? '30%' : '100%',
-          height: landscape ? '100%' :'30%',
-        }}
-      >
-        <View style={{
-            flex: 1,
-            flexDirection: 'column',
-            justifyContent: 'center', //main
-            alignItems: 'center', //secondary
-          }}
-        >
-          <Button color="orange" title="Click Me" onPress={() => console.log("Clicked!")} />
-        </View>
-      </View>
-
-
-      {/* <Text>Hello</Text> */}
     </SafeAreaView>
   );
 }
@@ -55,6 +35,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center', //vertical
     backgroundColor: '#fff', //white
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, //status bar for android as SafeAreaView only works iOS
-    // paddingTop: 0,
   },
 });

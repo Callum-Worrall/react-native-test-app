@@ -13,11 +13,10 @@ import {
 export default function App() {
 
   console.log("App executed.");
-  // console.log(useDimensions()); //doesnt respond to orientation changes
-  // console.log(useDeviceOrientation()); 
+  console.log(useDimensions()); //doesnt respond to orientation changes
+  console.log(useDeviceOrientation()); 
 
-  const { height, width} = useDimensions();
-  const landscape = width > height;
+  const {landscape} = useDeviceOrientation();
 
   return (
     <SafeAreaView style={[styles.container, containerStyle]}>
@@ -50,11 +49,11 @@ const containerStyle = { backgroundColor: "orange" }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'center', //horizontal
-    justifyContent: 'center', //vertical
+    // flex: 1,
     backgroundColor: '#fff', //white
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, //status bar for android as SafeAreaView only works iOS
     // paddingTop: 0,
+    alignItems: 'center', //horizontal
+    justifyContent: 'center', //vertical
   },
 });
