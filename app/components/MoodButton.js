@@ -28,7 +28,7 @@ export default function MoodButton(props) {
 
   return(
     <View>
-      <TouchableOpacity style={styles.button}
+      <TouchableOpacity style={details.selected ? [styles.button, styles.buttonSelected] : styles.button}
         onPress={() => selectionChange()} >
         <Text style={styles.buttonText}>{details.name}</Text>        
       </TouchableOpacity>
@@ -42,10 +42,16 @@ const styles = StyleSheet.create({
     height: 120,
     justifyContent: "flex-end",
     alignItems: "center",
-    backgroundColor: "orange",
+    // backgroundColor: "orange",
+  },
+
+  buttonSelected: {
+    backgroundColor: '#FFFFFF50'
   },
 
   buttonText: {
-    bottom: 10
+    bottom: 10,
+    fontSize: 17,
+    color: "white"
   }
 });
