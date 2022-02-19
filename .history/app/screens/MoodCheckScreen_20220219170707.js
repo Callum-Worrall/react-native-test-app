@@ -25,8 +25,8 @@ export default function MoodCheckScreen({navigation}) {
   const createMoodButtons = () => {
     console.log("Create Mood Buttons")//, moodArray)
     return moodStringArray.map((mood, index) => (
-      // <MoodButton />
-      <MoodButton key={index} id={index} name={mood} selected={false}/>
+      <MoodButton />
+      // <MoodButton key={index} id={index} name={mood} selected={false}/>
     ))
   }
 

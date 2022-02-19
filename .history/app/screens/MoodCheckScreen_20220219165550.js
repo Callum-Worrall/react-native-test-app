@@ -22,11 +22,43 @@ export default function MoodCheckScreen({navigation}) {
     'Angry', 'Sad', 'Optimistic'
   ]
 
+  // const initialState = moodStringArray.map((mood) => {
+  //     return {
+  //       name: mood,
+  //       selected: false
+  //     }
+  //   }
+  // )
+  
+  // const [moods, setMoods] = useState(initialState);
+
+  const moodSelectChange = (index) => {    
+    let mood = moods[index];
+
+    console.log(mood.name, "Button Clicked!")
+    let value = !mood.selected;
+
+    setMoods({
+       ...moods,
+       [mood]: value
+    })
+
+    console.log(
+      moods[index].name + (
+        moods[index].selected ? " selected." :  " unselected."
+      ) )
+  }
+
+  // const createMoodButton = (mood, index) => {
+  //   return (
+    
+  //   )
+  // }
+
   const createMoodButtons = () => {
     console.log("Create Mood Buttons")//, moodArray)
     return moodStringArray.map((mood, index) => (
-      // <MoodButton />
-      <MoodButton key={index} id={index} name={mood} selected={false}/>
+      <MoodButton key={} id={} name={} selected={} =>
     ))
   }
 

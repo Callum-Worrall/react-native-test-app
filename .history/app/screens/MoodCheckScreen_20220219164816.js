@@ -9,8 +9,6 @@ import {
 
 import colors from '../config/colors';
 
-import MoodButton from '../components/MoodButton'
-
 export default function MoodCheckScreen({navigation}) {
 
   console.log("Mood Check In Screen");
@@ -22,11 +20,50 @@ export default function MoodCheckScreen({navigation}) {
     'Angry', 'Sad', 'Optimistic'
   ]
 
+  const initialState = moodStringArray.map((mood) => {
+      return {
+        name: mood,
+        selected: false
+      }
+    }
+  )
+  
+  const [moods, setMoods] = useState(initialState);
+
+  const moodSelectChange = (index) => {    
+    let mood = moods[index];
+
+    console.log(mood.name, "Button Clicked!")
+    let value = !mood.selected;
+
+    setMoods({
+       ...moods,
+       ["selected"]: value
+    })
+
+    console.log(
+      moods[index].name + (
+        moods[index].selected ? " selected." :  " unselected."
+      ) )
+  }
+
+  const createMoodButton = (mood, index) => {
+    return (
+    <View>
+        <TouchableOpacity style={styles.button}
+          key={index}
+          onPress={() => moodSelectChange(index)}
+        >
+          <Text style={styles.buttonText}>{mood.name}</Text>        
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
   const createMoodButtons = () => {
     console.log("Create Mood Buttons")//, moodArray)
     return moodStringArray.map((mood, index) => (
-      // <MoodButton />
-      <MoodButton key={index} id={index} name={mood} selected={false}/>
+      createMoodButton(mood, index)
     ))
   }
 
@@ -93,5 +130,17 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
     justifyContent: "center",
+  },
+
+  button: {
+    width: 100,
+    height: 100,
+    justifyContent: "flex-end",
+    alignItems: "center",
+    backgroundColor: "orange",
+  },
+
+  buttonText: {
+    bottom: 10
   }
 });
