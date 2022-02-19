@@ -13,9 +13,7 @@ import IndexScreen from './app/screens/IndexScreen'
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{ headerShown: false }}
-      >
+      <Stack.Navigator>
         {/* <Stack.Screen
           name="SplashScreen"
           component={SplashScreen}

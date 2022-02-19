@@ -13,17 +13,20 @@ export default function MoodButton(props) {
 
   const [details, setDetails] = useState(formState);
 
-  const selectionChange = () => {
+  const selectionChange = () => {    
     console.log(
       "Mood Button",
       details.name,
-      (!details.selected ? "selected." : "unselected." )
+      "is being",
+      (details.selected ? "selected." : "unselected." )
     )
 
     setDetails({
        ...details,
        ["selected"]: !details.selected
     })
+
+    
   }
 
   return(
@@ -38,8 +41,8 @@ export default function MoodButton(props) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 110,
-    height: 120,
+    width: 100,
+    height: 100,
     justifyContent: "flex-end",
     alignItems: "center",
     backgroundColor: "orange",

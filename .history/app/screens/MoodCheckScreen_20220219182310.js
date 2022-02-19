@@ -117,13 +117,13 @@ const contentStyles = StyleSheet.create({
     backgroundColor: "dodgerblue",
     width: 350,
     height: 330,
-    justifyContent: "space-evenly",
-    alignItems: "stretch"
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   row: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
   },
     
   continue: {

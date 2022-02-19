@@ -33,7 +33,7 @@ export default function MoodCheckScreen({navigation}) {
   const createGrid = () => {
     const buttonArray = createMoodButtons();
     return(
-      <View style={contentStyles.buttonGrid}>
+      <View style={gridStyles.buttonGrid}>
         {createRow(buttonArray, 0)}
         {createRow(buttonArray, 1)}
         {createRow(buttonArray, 2)}
@@ -44,7 +44,7 @@ export default function MoodCheckScreen({navigation}) {
   const createRow = (buttonArray, rowNum) => {    
     console.log("Row: ", rowNum, " created.")
     return(
-    <View style={contentStyles.row}>
+    <View style={gridStyles.row}>
       {buttonArray[rowNum + 0]}
       {buttonArray[rowNum + 1]}
       {buttonArray[rowNum + 2]}
@@ -53,21 +53,21 @@ export default function MoodCheckScreen({navigation}) {
   }
 
   return (
-    <SafeAreaView style={pageStyles.screen}>
-      <View style={[pageStyles.navbar, pageStyles.topNavbar]}><Text>Top Navbar</Text></View>
-      <View style={pageStyles.content}>
-        <View style={contentStyles.selectionPrompt}>
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.topNavbar}><Text>Top Navbar</Text></View>
+      <View style={styles.content}>
+        <View style={styles.selectionPrompt}>
           <Text>How are you feeling?</Text>
         </View>
         {createGrid()}
-        <View style={contentStyles.continue}><Text>Continue</Text></View>
-      </View>      
-      <View style={[pageStyles.navbar, pageStyles.bottomNavbar]}><Text>Bottom Navbar</Text></View>
+      </View>
+      <View style={styles.continue}><Text>Continue</Text></View>
+      <View style={styles.bottomNavbar}><Text>Bottom Navbar</Text></View>
     </SafeAreaView>
   );
 }
 
-const pageStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center', //vertical
@@ -76,62 +76,54 @@ const pageStyles = StyleSheet.create({
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, //status bar for android as SafeAreaView only works iOS
   },
 
-  navbar: {
+  topNavbar: {
     flex: 1,
+    flexDirection: "row",
     width: 350,
+    justifyContent: 'center', //horizontal
+    alignItems: 'center', //vertical
     backgroundColor: "green",
   },
 
-  content: {
-    flex: 10,
-    backgroundColor: "blue",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  
-  topNavbar: {
-    flexDirection: "row",
-    justifyContent: 'center', //horizontal
-    alignItems: 'center', //vertical
-  },
-
-  bottomNavbar: {
-    flexDirection: "row",
-    justifyContent: 'center',
-    alignItems: "center"
-  },
-});
-
-const contentStyles = StyleSheet.create({
-  
   selectionPrompt: {
-    flex: 1.5,
+    flex: 1,
     fontSize: 24,
     width: 350,
     justifyContent: 'center',
     backgroundColor: "red",
   },
 
+  content: {
+    flex: 6,
+    backgroundColor: "blue",
+  },
+  
+  continue: {
+    flex: 1,
+    width: 350,
+    backgroundColor: "red",
+    flexDirection: "row-reverse",
+    alignContent: "flex-start"
+  },
+
+  bottomNavbar: {
+    flex: .5,
+    flexDirection: "row",
+    width: 350,
+    backgroundColor: "green",
+  },
+});
+
+const gridStyles = StyleSheet.create({
   buttonGrid: {
     flex: 5,
     backgroundColor: "dodgerblue",
     width: 350,
-    height: 330,
-    justifyContent: "space-evenly",
-    alignItems: "stretch"
-  },
+    height: 350,
+  },  
 
   row: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
-    
-  continue: {
-    flex: 1.5,
-    width: 350,
-    backgroundColor: "red",
-    flexDirection: "row-reverse",
-    alignItems: "center",
-    // alignItems: "flex-end"
-  },
+    justifyContent: "center",
+  }
 });

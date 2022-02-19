@@ -33,7 +33,7 @@ export default function MoodCheckScreen({navigation}) {
   const createGrid = () => {
     const buttonArray = createMoodButtons();
     return(
-      <View style={contentStyles.buttonGrid}>
+      <View style={styles.buttonGrid}>
         {createRow(buttonArray, 0)}
         {createRow(buttonArray, 1)}
         {createRow(buttonArray, 2)}
@@ -44,7 +44,7 @@ export default function MoodCheckScreen({navigation}) {
   const createRow = (buttonArray, rowNum) => {    
     console.log("Row: ", rowNum, " created.")
     return(
-    <View style={contentStyles.row}>
+    <View style={styles.row}>
       {buttonArray[rowNum + 0]}
       {buttonArray[rowNum + 1]}
       {buttonArray[rowNum + 2]}
@@ -53,62 +53,47 @@ export default function MoodCheckScreen({navigation}) {
   }
 
   return (
-    <SafeAreaView style={pageStyles.screen}>
-      <View style={[pageStyles.navbar, pageStyles.topNavbar]}><Text>Top Navbar</Text></View>
-      <View style={pageStyles.content}>
-        <View style={contentStyles.selectionPrompt}>
-          <Text>How are you feeling?</Text>
-        </View>
+    <SafeAreaView style={styles.screen}>
+      <View style={styles.header}>
+      </View>
+      <View style={styles.selectionPrompt}>
+        <Text>How are you feeling?</Text>
+      </View>
+      <View style={styles.content}>
+        
         {createGrid()}
-        <View style={contentStyles.continue}><Text>Continue</Text></View>
-      </View>      
-      <View style={[pageStyles.navbar, pageStyles.bottomNavbar]}><Text>Bottom Navbar</Text></View>
+      </View>
+      <View style={styles.footer}/>
     </SafeAreaView>
   );
 }
 
-const pageStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: 'center', //vertical
-    alignItems: 'center', //horizontal
+    backgroundColor: "dodgerblue",
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: colors.primary,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, //status bar for android as SafeAreaView only works iOS
   },
 
-  navbar: {
-    flex: 1,
-    width: 350,
-    backgroundColor: "green",
+  header: {
+    flex: .75,
   },
 
   content: {
-    flex: 10,
-    backgroundColor: "blue",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  
-  topNavbar: {
-    flexDirection: "row",
-    justifyContent: 'center', //horizontal
-    alignItems: 'center', //vertical
+    flex: 6,
   },
 
-  bottomNavbar: {
-    flexDirection: "row",
-    justifyContent: 'center',
-    alignItems: "center"
+  footer: {
+    flex: 3,
   },
-});
 
-const contentStyles = StyleSheet.create({
-  
   selectionPrompt: {
-    flex: 1.5,
+    flex: .75,
     fontSize: 24,
-    width: 350,
-    justifyContent: 'center',
+    width: "100%",
     backgroundColor: "red",
   },
 
@@ -116,22 +101,11 @@ const contentStyles = StyleSheet.create({
     flex: 5,
     backgroundColor: "dodgerblue",
     width: 350,
-    height: 330,
-    justifyContent: "space-evenly",
-    alignItems: "stretch"
-  },
+    height: 350,
+  },  
 
   row: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
-    
-  continue: {
-    flex: 1.5,
-    width: 350,
-    backgroundColor: "red",
-    flexDirection: "row-reverse",
-    alignItems: "center",
-    // alignItems: "flex-end"
-  },
+    justifyContent: "center",
+  }
 });

@@ -85,8 +85,6 @@ const pageStyles = StyleSheet.create({
   content: {
     flex: 10,
     backgroundColor: "blue",
-    justifyContent: "center",
-    alignItems: "center"
   },
   
   topNavbar: {
@@ -105,7 +103,7 @@ const pageStyles = StyleSheet.create({
 const contentStyles = StyleSheet.create({
   
   selectionPrompt: {
-    flex: 1.5,
+    flex: 1,
     fontSize: 24,
     width: 350,
     justifyContent: 'center',
@@ -116,18 +114,16 @@ const contentStyles = StyleSheet.create({
     flex: 5,
     backgroundColor: "dodgerblue",
     width: 350,
-    height: 330,
-    justifyContent: "space-evenly",
-    alignItems: "stretch"
+    height: 350,
   },
 
   row: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
   },
     
   continue: {
-    flex: 1.5,
+    flex: 1,
     width: 350,
     backgroundColor: "red",
     flexDirection: "row-reverse",

@@ -117,7 +117,7 @@ const contentStyles = StyleSheet.create({
     backgroundColor: "dodgerblue",
     width: 350,
     height: 330,
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     alignItems: "stretch"
   },
 

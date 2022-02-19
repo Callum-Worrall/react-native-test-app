@@ -53,21 +53,21 @@ export default function MoodCheckScreen({navigation}) {
   }
 
   return (
-    <SafeAreaView style={pageStyles.screen}>
-      <View style={[pageStyles.navbar, pageStyles.topNavbar]}><Text>Top Navbar</Text></View>
-      <View style={pageStyles.content}>
-        <View style={contentStyles.selectionPrompt}>
+    <SafeAreaView style={styles.screen}>
+      <View style={[styles.navbar, styles.topNavbar]}><Text>Top Navbar</Text></View>
+      <View style={styles.content}>
+        <View style={styles.selectionPrompt}>
           <Text>How are you feeling?</Text>
         </View>
         {createGrid()}
-        <View style={contentStyles.continue}><Text>Continue</Text></View>
+        <View style={styles.continue}><Text>Continue</Text></View>
       </View>      
-      <View style={[pageStyles.navbar, pageStyles.bottomNavbar]}><Text>Bottom Navbar</Text></View>
+      <View style={[styles.navbar, styles.bottomNavbar]}><Text>Bottom Navbar</Text></View>
     </SafeAreaView>
   );
 }
 
-const pageStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   screen: {
     flex: 1,
     justifyContent: 'center', //vertical
@@ -85,8 +85,6 @@ const pageStyles = StyleSheet.create({
   content: {
     flex: 10,
     backgroundColor: "blue",
-    justifyContent: "center",
-    alignItems: "center"
   },
   
   topNavbar: {
@@ -105,7 +103,7 @@ const pageStyles = StyleSheet.create({
 const contentStyles = StyleSheet.create({
   
   selectionPrompt: {
-    flex: 1.5,
+    flex: 1,
     fontSize: 24,
     width: 350,
     justifyContent: 'center',
@@ -116,18 +114,16 @@ const contentStyles = StyleSheet.create({
     flex: 5,
     backgroundColor: "dodgerblue",
     width: 350,
-    height: 330,
-    justifyContent: "space-evenly",
-    alignItems: "stretch"
+    height: 350,
   },
 
   row: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
   },
     
   continue: {
-    flex: 1.5,
+    flex: 1,
     width: 350,
     backgroundColor: "red",
     flexDirection: "row-reverse",

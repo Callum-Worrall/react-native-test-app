@@ -16,14 +16,23 @@ export default function MoodButton(props) {
   const selectionChange = () => {
     console.log(
       "Mood Button",
-      details.name,
-      (!details.selected ? "selected." : "unselected." )
+      details.name +":",
+      (details.selected ? "selected." : "unselected." )
     )
+
+    // console.log(
+    //   "Mood Button",
+    //   details.name,
+    //   "is being",
+    //   (details.selected ? "unselected." : "selected." )
+    // )
 
     setDetails({
        ...details,
        ["selected"]: !details.selected
     })
+
+    
   }
 
   return(
@@ -38,8 +47,8 @@ export default function MoodButton(props) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 110,
-    height: 120,
+    width: 100,
+    height: 100,
     justifyContent: "flex-end",
     alignItems: "center",
     backgroundColor: "orange",

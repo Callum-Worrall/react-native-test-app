@@ -115,15 +115,15 @@ const contentStyles = StyleSheet.create({
   buttonGrid: {
     flex: 5,
     backgroundColor: "dodgerblue",
-    width: 350,
+    width: 330,
     height: 330,
-    justifyContent: "space-evenly",
-    alignItems: "stretch"
+    justifyContent: "center",
+    alignItems: "center"
   },
 
   row: {
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
   },
     
   continue: {

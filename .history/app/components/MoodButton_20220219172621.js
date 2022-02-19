@@ -38,8 +38,8 @@ export default function MoodButton(props) {
 
 const styles = StyleSheet.create({
   button: {
-    width: 110,
-    height: 120,
+    width: 100,
+    height: 100,
     justifyContent: "flex-end",
     alignItems: "center",
     backgroundColor: "orange",
