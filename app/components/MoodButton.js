@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 
 import colors from '../config/colors';
@@ -15,7 +15,11 @@ export default function MoodButton(props) {
   // const { moods } = state;
 
   const [moodType, setMoodType] = useState(props.moodType);
+  const [selected, setSelected] = useState(false);
 
+  // useEffect(() => {
+
+  // }, [movies]);
   // setMoodType(props.moodType);
 
   // console.log(" ")
@@ -26,48 +30,45 @@ export default function MoodButton(props) {
   // console.log("selectedMoods:", selectedMoods);
   // console.log("//////MoodButton////////")
 
+  const forceUpdate = React.useState()[1].bind(null, {})
+
+  useEffect(() => {
+    // action on update of selected
+  }, [selected]);
+
   const selectionChange = () => {
-    // console.log(
-    //   "Mood Button",
-    //   moodType,
-    //   (moods.selected ? "selected." : "unselected." )
-    // )
-
-    // dispatch(toggleSelectMood(props.moodType));
     dispatch(toggleSelectMood(moodType, (moodType, "MoodButton")));
+    console.log("Local - Selected - Before:", selected)
 
-    console.log("MoodButton - Current State: ", state);
-    // console.log("Current Moods Selected:", moods);
+    // setSelected(prevSelected => ([...prevMovies, ...result]));
+
+    setSelected(selected ? false : true)
+
+    console.log("Local - Selected - After:", selected)
+    forceUpdate();
   }
 
-  
-  const checkIfSelected = () => {
-    if(moods.length > 0) {
-      moods.each((mood) => {
-        if(mood.type === moodType) {
-          return true;
-        }
-      })
-    }
-  }
-
-  // const handleInputOnChange = ({ currentTarget: { name, value } }) =>
-  //   setForm((state) => ({ ...state, [name]: value }));
-
-  // const handleOnSelectAMoodPress = () => {
-  //   dispatch(toggleSelect(moodFactory(form)));
+  // const selectionChange = () => {
+  //   dispatch(toggleSelectMood(moodType, (moodType, "MoodButton")));
   // }
 
+  const selectedStyle = () => {
+    return ({ selected } ? styles.button : [styles.button, styles.buttonSelected])
+  }
 
-  return(
+  return (
     <View>
-      {/*change to */} 
       <TouchableOpacity
-        style={{checkIfSelected} ? [styles.button, styles.buttonSelected] : styles.button}
+        style={
+          [
+            styles.button,
+            { selected } ? styles.button : [styles.button, styles.buttonSelected]
+          ]
+        }
         onPress={() => selectionChange()} >
-        <Text style={styles.buttonText}>{props.name}</Text>       
+        <Text style={styles.buttonText}>{moodType}</Text>
       </TouchableOpacity>
-    </View>
+    </View >
   )
 }
 

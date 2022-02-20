@@ -1,40 +1,42 @@
 import React from 'react'
-import { StyleSheet, SafeAreaView, Platform, StatusBar,
-Text } from 'react-native'
+import {
+  StyleSheet, SafeAreaView, Platform, StatusBar,
+  Text
+} from 'react-native'
 import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks';
 
 import colors from '../config/colors';
 import { useStore } from '../stores/Store';
 // import { toggleSelectMood } from '../stores/actions';
 
-export default IndexScreen = ({navigation}) => {
-  
-  const { height, width} = useDimensions();
+export default IndexScreen = ({ navigation }) => {
+
+  const { height, width } = useDimensions();
   const landscape = width > height;
 
   console.log("Index Screen");
   const [state] = useStore();
-  const {moods} = state;
+  const { moods } = state;
 
   // console.log({moods})
 
-  let selectedMoods = [] 
+  let selectedMoods = []
   moods.forEach((mood) => {
-    if(mood.selected) {
+    if (mood.selected) {
       selectedMoods.push(mood.type);
     }
   })
 
-  console.log({selectedMoods})
+  console.log({ selectedMoods })
 
   let insertString = ""
 
-  switch(selectedMoods.length) {
+  switch (selectedMoods.length) {
     case 1:
       console.log("Hit Case 1")
       insertString = selectedMoods[0]
       break;
-      
+
     case 2:
       console.log("Hit Case 2")
       insertString = (selectedMoods[0] + " and " + selectedMoods[1])
@@ -44,9 +46,9 @@ export default IndexScreen = ({navigation}) => {
       console.log("Hit Case 3")
       insertString = (selectedMoods[0] + ", " + selectedMoods[1] + " and " + selectedMoods[2])
       break;
-      
+
     case 0:
-      console.warning("No mood has been selected.")
+      console.error("No mood has been selected.")
       break;
 
     default:
@@ -57,12 +59,12 @@ export default IndexScreen = ({navigation}) => {
 
 
   return (
-    <SafeAreaView style={styles.container}>    
+    <ScreenWrapper>
       <Text>
         {/* "Why are you feeling [moods] ?" */}
         "Why are you feeling {insertString} ?"
       </Text>
-    </SafeAreaView>
+    </ScreenWrapper>
   );
 }
 

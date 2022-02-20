@@ -3,6 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useDimensions, useDeviceOrientation } from '@react-native-community/hooks';
 
+import ScreenWrapper from './app/screens/ScreenWrapper';
+
 /// Context ///
 import { StoreProvider } from './app/stores/Store'
 // import { initialState, reducer } from './app/stores/selectMoodTableReducer';
@@ -20,18 +22,32 @@ import BreathScreen from './app/screens/BreathScreen'
 import MoodCheckScreen from './app/screens/MoodCheckScreen'
 import IndexScreen from './app/screens/IndexScreen'
 
+// //Stack Navigator with Wrapper
+
+// const ScreenWrappedStackNavigator = createStackNavigator({
+//   MoodCheckScreen: {screen: MoodCheckScreen,},
+//   IndexScreen: { screen: IndexScreen }
+// }, {initialRouteName: 'IndexScreen'})
+
+// const RootTabNavigator = createBottomTabNavigator({
+//   Settings: {screen: SettingsStackNavigator },
+// });
+
+// const AppContainer = createAppContainer(RootTabNavigator);
+// //
+
+
+const createWrapper = (name, component) => {
+  return (
+    <ScreenWrapper>
+      <Stack.Screen name={name} component={component} />
+    </ScreenWrapper>
+  )
+}
 
 export const App = () => {
 
-
   console.log("App - Initial State:", initialState)
-
-  //useMemo
-  // const contextValue = React.useMemo(() => {
-  //   return { state, dispatch };
-  // }, [state, dispatch]);
-
-  // const [state, dispatch] = useReducer(moodReducer, initialState);
 
   return (
     <StoreProvider initialState={initialState} reducer={reducer}>
@@ -53,6 +69,7 @@ export const App = () => {
             name="IndexScreen"
             component={IndexScreen}
           />
+          {/* {createWrapper("IndexScreen", IndexScreen)} */}
         </Stack.Navigator>
       </NavigationContainer>
     </StoreProvider>

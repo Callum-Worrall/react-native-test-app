@@ -1,8 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import {
   StyleSheet, Platform, StatusBar,
   View, SafeAreaView,
-  TouchableOpacity, Text } from 'react-native'
+  TouchableOpacity, Text
+} from 'react-native'
 import {
   useDimensions, useDeviceOrientation
 } from '@react-native-community/hooks';
@@ -11,38 +12,41 @@ import colors from '../config/colors';
 import MoodGrid from '../components/MoodGrid'
 import MoodButton from '../components/MoodButton'
 
-export default function MoodCheckScreen({navigation}) {
+export default function MoodCheckScreen({ navigation }) {
 
   console.log("Mood Check In Screen");
-  const {landscape} = useDeviceOrientation();
-  
+  const { landscape } = useDeviceOrientation();
+
   return (
-    <SafeAreaView style={pageStyles.screen}>
-      <View style={[pageStyles.navbar, pageStyles.topNavbar]}><Text>Top Navbar</Text></View>
-      <View style={pageStyles.content}>
-        <View style={contentStyles.selectionPrompt}>
-          <Text
-            numberOfLines={1}// add this 
-            adjustsFontSizeToFit// add this
-            style={{ fontSize: 28, bottom: 20 }}
-          >
-            How are you feeling?
-          </Text>
-        </View>
-        <MoodGrid style={contentStyles.moodGrid}/>        
-        <View style={contentStyles.continue}>
+    <ScreenWrapper>
+
+      <View style={contentStyles.selectionPrompt}>
+        <Text
+          numberOfLines={1}// add this 
+          adjustsFontSizeToFit// add this
+          style={{ fontSize: 28, bottom: 20 }}
+        >
+          How are you feeling?
+        </Text>
+      </View>
+
+      <MoodGrid style={contentStyles.moodGrid} />
+
+      <View style={contentStyles.continue}>
         <TouchableOpacity onPress={() =>
-          navigation.navigate('IndexScreen')}><Text
+          navigation.navigate('IndexScreen')}
+        >
+          <Text
             numberOfLines={1}// add this 
             adjustsFontSizeToFit// add this
             style={{ fontSize: 28, bottom: 10, right: 10 }}//, bottom: 10, left: 10 }}
           >
-            ->
-          </Text></TouchableOpacity>
-        </View>
-      </View>      
-      <View style={[pageStyles.navbar, pageStyles.bottomNavbar]}><Text>Bottom Navbar</Text></View>
-    </SafeAreaView>
+              ->
+          </Text>
+        </TouchableOpacity>
+      </View>
+
+    </ScreenWrapper>
   );
 }
 
@@ -66,7 +70,7 @@ const pageStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  
+
   topNavbar: {
     flexDirection: "row",
     justifyContent: 'center', //horizontal
@@ -80,7 +84,7 @@ const pageStyles = StyleSheet.create({
   },
 });
 
-const contentStyles = StyleSheet.create({  
+const contentStyles = StyleSheet.create({
   selectionPrompt: {
     flex: 1.5,
     width: 350,
