@@ -9,25 +9,24 @@ import {
 
 import colors from '../config/colors';
 
-import MoodButton from '../components/MoodButton'
+import MoodButton from './MoodButton'
+
+import { moodStringArray } from '../stores/schema/Mood'
 
 export default function MoodGrid(props) {
-  
-  const moods = [
-    'Lonely', 'Happy', 'Confused',
-    'Bored', 'Anxious', 'Disappointed',
-    'Angry', 'Sad', 'Optimistic'
-  ]
 
   const createMoodButtons = () => {
-    console.log("Create Mood Buttons")
-    return moods.map((mood, index) => (
-      <MoodButton key={index} id={index} name={mood} selected={false}/>
+    // (console.log("MoodGrid.js, createMoodButtons() - Array Check for Map: ", moodStringArray))
+    const moodButtons = moodStringArray.map((mood, index) => (
+      <MoodButton key={index} id={index} moodType={mood} selected={false}/>
     ))
+    return (moodButtons)
   }
 
+  const buttonArray = createMoodButtons();
+
   const createRow = (buttonArray, rowNum) => {    
-    console.log("Row: ", rowNum, " created.")
+    // console.log("Row: ", rowNum, " created.")
     return(
     <View style={styles.row}>
       {buttonArray[rowNum + 0]}
@@ -37,13 +36,11 @@ export default function MoodGrid(props) {
     )
   }
 
-  const buttonArray = createMoodButtons();
-
   return (
     <View style={styles.buttonGrid}>
       {createRow(buttonArray, 0)}
-      {createRow(buttonArray, 1)}
-      {createRow(buttonArray, 2)}
+      {createRow(buttonArray, 3)}
+      {createRow(buttonArray, 6)}
     </View>
   )
 }
@@ -54,7 +51,7 @@ const styles = StyleSheet.create({
     flex: 5,
     width: 340,
     height: 418,
-    backgroundColor: "#60195B",
+    backgroundColor: colors.moodPurple,
     justifyContent: "space-evenly",
     alignItems: "stretch"
   },

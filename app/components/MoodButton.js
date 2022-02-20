@@ -1,36 +1,71 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
 
 import colors from '../config/colors';
 
+import mood from '../stores/schema/Mood'
+import { useStore } from '../stores/Store';
+import { toggleSelectMood } from '../stores/actions';
+// import { toggleSelect } from '../stores/selectMoodTableReducer';
+
 export default function MoodButton(props) {
 
-  const formState = {
-    id: props.id,
-    name: props.name,
-    selected: props.selected
-  }
+  const [state, dispatch] = useStore();
+  // const [state] = useStore();
+  // const { moods } = state;
 
-  const [details, setDetails] = useState(formState);
+  const [moodType, setMoodType] = useState(props.moodType);
+
+  // setMoodType(props.moodType);
+
+  // console.log(" ")
+  // console.log("//////MoodButton////////")
+  // console.log("State Type:", typeof(state));
+  // console.log("State:", state);
+  // console.log("selectedMoods Type:", typeof(selectedMoods));
+  // console.log("selectedMoods:", selectedMoods);
+  // console.log("//////MoodButton////////")
 
   const selectionChange = () => {
-    console.log(
-      "Mood Button",
-      details.name,
-      (!details.selected ? "selected." : "unselected." )
-    )
+    // console.log(
+    //   "Mood Button",
+    //   moodType,
+    //   (moods.selected ? "selected." : "unselected." )
+    // )
 
-    setDetails({
-       ...details,
-       ["selected"]: !details.selected
-    })
+    // dispatch(toggleSelectMood(props.moodType));
+    dispatch(toggleSelectMood(moodType, (moodType, "MoodButton")));
+
+    console.log("MoodButton - Current State: ", state);
+    // console.log("Current Moods Selected:", moods);
   }
+
+  
+  const checkIfSelected = () => {
+    if(moods.length > 0) {
+      moods.each((mood) => {
+        if(mood.type === moodType) {
+          return true;
+        }
+      })
+    }
+  }
+
+  // const handleInputOnChange = ({ currentTarget: { name, value } }) =>
+  //   setForm((state) => ({ ...state, [name]: value }));
+
+  // const handleOnSelectAMoodPress = () => {
+  //   dispatch(toggleSelect(moodFactory(form)));
+  // }
+
 
   return(
     <View>
-      <TouchableOpacity style={details.selected ? [styles.button, styles.buttonSelected] : styles.button}
+      {/*change to */} 
+      <TouchableOpacity
+        style={{checkIfSelected} ? [styles.button, styles.buttonSelected] : styles.button}
         onPress={() => selectionChange()} >
-        <Text style={styles.buttonText}>{details.name}</Text>        
+        <Text style={styles.buttonText}>{props.name}</Text>       
       </TouchableOpacity>
     </View>
   )
