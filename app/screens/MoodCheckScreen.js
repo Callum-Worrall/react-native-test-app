@@ -1,48 +1,49 @@
-import React, { useState } from 'react'
-import {
-  StyleSheet, Platform, StatusBar,
-  View, SafeAreaView,
-  TouchableOpacity, Text
-} from 'react-native'
-import {
-  useDimensions, useDeviceOrientation
-} from '@react-native-community/hooks';
+import React from 'react';
+import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
+import color from '../config/colors';
 
-import colors from '../config/colors';
+import { useStore } from '../stores/store'
+
 import MoodGrid from '../components/MoodGrid'
-import MoodButton from '../components/MoodButton'
 
 export default function MoodCheckScreen({ navigation }) {
 
   console.log("Mood Check In Screen");
-  const { landscape } = useDeviceOrientation();
+
+  // React.useEffect(() => { }, [moods]);
+  const state = useStore()
+  const { moods } = state
+
+  const [selected, setSelected] = React.useState([])
+
+  const toggleSelectHandler = (index) => {
+    setSelected(!selected);
+  };
 
   return (
     <ScreenWrapper>
 
-      <View style={contentStyles.selectionPrompt}>
+      {/* Ask the user to breath */}
+      <View style={styles.selectionPrompt}>
         <Text
           numberOfLines={1}// add this 
           adjustsFontSizeToFit// add this
-          style={{ fontSize: 28, bottom: 20 }}
+          style={{ fontSize: 28, margin: 20 }}
         >
           How are you feeling?
         </Text>
       </View>
 
-      <MoodGrid style={contentStyles.moodGrid} />
+      <MoodGrid toggleSelectHandler={toggleSelectHandler} />
 
-      <View style={contentStyles.continue}>
-        <TouchableOpacity onPress={() =>
-          navigation.navigate('IndexScreen')}
-        >
-          <Text
-            numberOfLines={1}// add this 
-            adjustsFontSizeToFit// add this
-            style={{ fontSize: 28, bottom: 10, right: 10 }}//, bottom: 10, left: 10 }}
-          >
-              ->
+      {/* Continue Button '>' */}
+      <View style={styles.continue}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('IndexScreen')} >
+          <Text style={styles.continueSymbol} numberOfLines={1} adjustsFontSizeToFit >
+            ->
           </Text>
+
         </TouchableOpacity>
       </View>
 
@@ -50,41 +51,7 @@ export default function MoodCheckScreen({ navigation }) {
   );
 }
 
-const pageStyles = StyleSheet.create({
-  screen: {
-    flex: 1,
-    justifyContent: 'center', //vertical
-    alignItems: 'center', //horizontal
-    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0, //status bar for android as SafeAreaView only works iOS
-  },
-
-  navbar: {
-    flex: 1,
-    width: 350,
-    // backgroundColor: "green",
-  },
-
-  content: {
-    flex: 10,
-    // backgroundColor: "blue",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-
-  topNavbar: {
-    flexDirection: "row",
-    justifyContent: 'center', //horizontal
-    alignItems: 'center', //vertical
-  },
-
-  bottomNavbar: {
-    flexDirection: "row",
-    justifyContent: 'center',
-    alignItems: "center"
-  },
-});
-
-const contentStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   selectionPrompt: {
     flex: 1.5,
     width: 350,
@@ -98,5 +65,12 @@ const contentStyles = StyleSheet.create({
     // backgroundColor: "red",
     flexDirection: "row-reverse",
     alignItems: "flex-end"
+  },
+
+  continueSymbol: {
+    fontSize: 28,
+    bottom: 10,
+    right: 10,
+    color: color.moodPurple,
   },
 });

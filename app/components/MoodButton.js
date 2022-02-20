@@ -1,72 +1,52 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { StyleSheet, View, TouchableOpacity, Text } from 'react-native'
+import color from '../config/colors';
 
-import colors from '../config/colors';
-
-import mood from '../stores/schema/Mood'
-import { useStore } from '../stores/Store';
+import { useStore } from '../stores/store';
 import { toggleSelectMood } from '../stores/actions';
 // import { toggleSelect } from '../stores/selectMoodTableReducer';
 
 export default function MoodButton(props) {
 
-  const [state, dispatch] = useStore();
-  // const [state] = useStore();
-  // const { moods } = state;
+  const [, dispatch] = useStore();
+  const state = useStore();
+  // const { moods } = useStore();
 
-  const [moodType, setMoodType] = useState(props.moodType);
-  const [selected, setSelected] = useState(false);
+  console.log(state[0])
+  let storeSelected = state[0].moods[props.index].selected
 
-  // useEffect(() => {
+  const [moodType, setMoodType] = React.useState(props.moodType);
+  // const [selected, setSelected] = React.useState(storeSelected);
 
-  // }, [movies]);
-  // setMoodType(props.moodType);
+  // const forceUpdate = React.useState()[1].bind(null, {})
 
-  // console.log(" ")
-  // console.log("//////MoodButton////////")
-  // console.log("State Type:", typeof(state));
-  // console.log("State:", state);
-  // console.log("selectedMoods Type:", typeof(selectedMoods));
-  // console.log("selectedMoods:", selectedMoods);
-  // console.log("//////MoodButton////////")
-
-  const forceUpdate = React.useState()[1].bind(null, {})
-
-  useEffect(() => {
-    // action on update of selected
-  }, [selected]);
+  // useEffect(props.toggleSelectHandler(),
+  //   [selected]
+  // );
 
   const selectionChange = () => {
     dispatch(toggleSelectMood(moodType, (moodType, "MoodButton")));
-    console.log("Local - Selected - Before:", selected)
 
-    // setSelected(prevSelected => ([...prevMovies, ...result]));
+    console.log("Selected:", moodType)
 
-    setSelected(selected ? false : true)
-
-    console.log("Local - Selected - After:", selected)
-    forceUpdate();
+    // console.log("Local - Selected - Before:", selected)
+    // setSelected(!state[0].moods[props.index].selected);
+    // console.log("Local - Selected - After:", selected)
   }
 
-  // const selectionChange = () => {
-  //   dispatch(toggleSelectMood(moodType, (moodType, "MoodButton")));
+  // const selectedStyle = () => {
+  //   return ({ selected } ? [styles.button, styles.buttonSelected] : styles.button)
   // }
-
-  const selectedStyle = () => {
-    return ({ selected } ? styles.button : [styles.button, styles.buttonSelected])
-  }
 
   return (
     <View>
       <TouchableOpacity
-        style={
-          [
-            styles.button,
-            { selected } ? styles.button : [styles.button, styles.buttonSelected]
-          ]
-        }
-        onPress={() => selectionChange()} >
-        <Text style={styles.buttonText}>{moodType}</Text>
+        style={styles.button}
+        onPress={() => selectionChange()}
+      >
+        <Text style={styles.buttonText}>
+          {moodType}
+        </Text>
       </TouchableOpacity>
     </View >
   )
@@ -82,12 +62,12 @@ const styles = StyleSheet.create({
   },
 
   buttonSelected: {
-    backgroundColor: '#FFFFFF50'
+    backgroundColor: color.translucentWhite,
   },
 
   buttonText: {
     bottom: 10,
     fontSize: 17,
     color: "white"
-  }
+  },
 });
